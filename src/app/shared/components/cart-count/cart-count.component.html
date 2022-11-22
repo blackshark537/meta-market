@@ -1,0 +1,4 @@
+<ion-button color="dark" [routerLink]="['/cart']">
+  <ion-icon name="cart"></ion-icon>
+  <ion-badge color="danger">{{(carrito$ | async)?.length}}</ion-badge>
+</ion-button>

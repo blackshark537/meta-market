@@ -1,0 +1,27 @@
+<ion-header collapse="fade">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Ordenes De Compras</ion-label>
+    </ion-list-header>
+
+    <ion-item *ngFor="let order of orders$ | async ">
+      <ion-label>
+        <h1>Fecha: {{order.fecha | date: 'medium'}} </h1>
+        <h2>Importe: RD {{order.importe | currency }} </h2>
+        <h2>Estado: {{order.estado | uppercase }}</h2>
+      </ion-label>
+      <ion-spinner *ngIf="order.estado === 'procesando'; else IconBlock " name="lines-sharp-small"></ion-spinner>
+      <ng-template #IconBlock>
+        <ion-icon [color]="colors[order.estado]" [name]="icons[order.estado]" slot="end"></ion-icon>
+      </ng-template>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

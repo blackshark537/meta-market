@@ -1,0 +1,33 @@
+<ion-item-sliding>
+
+  
+
+<ion-item >
+  <ion-thumbnail slot="start">
+    <img [src]="foto" alt="image">
+  </ion-thumbnail>
+  <ion-label>
+    <h2>{{nombre}}</h2>
+    <ion-row>
+      <ion-col size="6">
+        <ion-label>
+          <h2>Precio:</h2>
+          <h2>Cantidad:</h2>
+        </ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label style="text-align: right;">
+          <h2>RD {{precio | currency}}</h2>
+          <h2>{{cantidad}} {{medida}} </h2>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-label>
+</ion-item>
+
+<ion-item-options slot="end">
+  <ion-item-option (click)="remove()" color="danger">
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    </ion-item-option>
+</ion-item-options>
+</ion-item-sliding>

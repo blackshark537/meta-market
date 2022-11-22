@@ -1,0 +1,9 @@
+<ion-card *ngIf="enabled" color="primary">
+  <ion-card-content>
+    <ion-icon name="pricetag" size="large" ></ion-icon>
+    <ion-card-title>{{title | titlecase}}</ion-card-title>
+    <ion-text>Oferta Válida Hasta El {{dead_line | date: 'd MMM, y'}}</ion-text>
+    <ion-card-subtitle>{{subtitle | titlecase}}</ion-card-subtitle>
+    <ion-button shape="round" fill="solid" color="danger">comprar ahora</ion-button>
+  </ion-card-content>
+</ion-card>

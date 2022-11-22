@@ -1,0 +1,59 @@
+<ion-header collapse="fade">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>
+      <ion-icon name="pricetag-outline"></ion-icon>
+      Producto
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <app-cart-count></app-cart-count>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <product-card *ngIf="loaded" [product]="product"></product-card>
+
+  <ion-grid style="margin: 1em;">
+    <ion-row>
+      <ion-col size="5">
+        <ion-label >
+          <h1 style="margin-top: .5em;">Cantidad:</h1>
+        </ion-label>      
+      </ion-col>
+      <ion-col size="2">
+        <ion-fab-button color="dark" (click)="decrement()">
+          <ion-icon name="remove"></ion-icon>
+        </ion-fab-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-label>
+          <h1 style="margin-top: .5em; text-align: center;">{{qty}}</h1>
+        </ion-label>
+      </ion-col>
+      <ion-col size="2">
+        <ion-fab-button color="dark" (click)="increment()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button (click)="addToCart()" fill="outline" shape="round" expand="block">
+    <ion-icon slot="start"  name="cart-outline"></ion-icon>
+    Agregar Al Carrito
+  </ion-button>
+  <ion-button (click)="share()" color="medium" fill="outline" shape="round" expand="block">
+    <ion-icon slot="start"  name="share-social-outline"></ion-icon>
+    Compartir
+  </ion-button>
+  <ion-button [routerLink]="['/cart']" color="medium" fill="outline" shape="round" expand="block">
+    <ion-icon slot="start" name="eye-outline"></ion-icon>
+    Ir Al Carrito
+  </ion-button>
+  
+  <div style="width: 100%; height: 3em; margin-top: 1em;"></div>
+</ion-content>

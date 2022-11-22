@@ -1,0 +1,36 @@
+<ion-header collapse="fade">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>
+      <ion-icon name="location-outline" slot="start"></ion-icon>
+      Mis Direcciones
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngFor="let address of addresses$ | async">
+      <app-address-item [address]="address"></app-address-item>
+    </div>
+
+    <div class="empty" *ngIf="!(addresses$ | async)?.length">
+      <ion-label>
+        <ion-icon name="leaf-outline"></ion-icon>
+        Agrega Una Dirección
+      </ion-label>
+    </div>
+
+    <ion-modal #modal trigger="open-modal" [isOpen]="openModal" (willDismiss)="openModal=false">
+      <ng-template>
+        <div [ngStyle]="{height: '100%'}">
+          <app-address-form></app-address-form>
+        </div>
+      </ng-template>
+    </ion-modal>
+
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-button (click)="openModal=true" color="primary" fill="outline" expand="full" shape="round">Agregar Una Dirección</ion-button>
+</ion-footer>

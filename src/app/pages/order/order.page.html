@@ -1,0 +1,48 @@
+<ion-header collapse="fade">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Hacer Pedido</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/address']">
+        Mis Direcciones
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Total A Pagar</ion-label>
+    </ion-list-header>
+
+    <ion-item lines="none">
+      <ion-label slot="end">
+        <h1>Importe RD: {{(getTotal(products$) | async) | currency }}</h1>
+      </ion-label>
+    </ion-item>
+    <ion-item >
+      <ion-label slot="end">
+        <h1>Envio RD: {{envio | currency}}</h1>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label slot="end">
+        <h1>Total RD: {{(getTotal(products$) | async) | currency }}</h1>
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider></ion-item-divider>
+
+    <ion-list-header>
+      <ion-label>Elegir Dirección</ion-label>
+    </ion-list-header>
+
+    <app-address-item *ngFor="let address of addresses" [address]="address" [chequed]="true"></app-address-item>
+
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-button (click)="makeOrder()" fill="outline" expand="full" shape="round">Hacer Pedido</ion-button>
+</ion-footer>

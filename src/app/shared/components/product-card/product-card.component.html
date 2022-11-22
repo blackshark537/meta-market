@@ -1,0 +1,19 @@
+<ion-card >
+  <div #cardImg>
+    <img [src]="foto" alt="image" loading="eager" width="100%" height="100%">
+  </div>
+</ion-card>
+
+
+<div class="title">
+  <h1>{{nombre | titlecase}}</h1>
+  <h1>
+    <b>RD {{precio | currency}}</b>
+    <small *ngIf="en_oferta">
+      <ion-badge>
+        En offerta
+      </ion-badge>
+    </small>
+  </h1>
+  <h2 *ngIf="en_oferta"> RD <del>{{precio_venta | currency}}</del></h2>
+</div>

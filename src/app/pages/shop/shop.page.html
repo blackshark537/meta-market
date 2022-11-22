@@ -1,0 +1,42 @@
+<ion-header collapse="fade">
+  <ion-toolbar>
+    
+    <ion-title>
+      <ion-icon name="storefront-outline"></ion-icon>
+      Tienda
+    </ion-title>
+    <ion-buttons slot="end">
+      <app-cart-count></app-cart-count>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-list-header>Categorías</ion-list-header>
+    <swiper 
+    [config]="config" 
+    >
+    <!-- (swiper)="setSwiperInstance($event)" -->
+      <ng-template *ngFor="let cat of categories$ | async" swiperSlide>
+        <app-category [attributes]="cat.attributes" (click)="openCategory(cat)"></app-category>
+      </ng-template>
+    </swiper>
+    
+    <app-banner *ngFor="let banner of banners$ | async" [attributes]="banner.attributes" ></app-banner>
+    
+    <ion-list-header>Productos en oferta</ion-list-header>
+
+    
+    <product-item *ngFor="let item of products$ | async" [product]="item"></product-item>
+    <div class="empty" *ngIf="!(products$ | async)?.length">
+      <ion-label>
+        <ion-icon name="leaf-outline"></ion-icon>
+        No hay productos en oferta
+      </ion-label>
+    </div>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,30 @@
+<ion-header collapse="fade">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/']">Tienda</ion-button>
+    </ion-buttons>
+    <ion-title>session</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngIf="sessionType === 'login'; else Signup ">
+      <ion-list-header>
+        <ion-label>
+          <p>Hola, si no posees una cuenta trata de <a [routerLink]="['/session/signup']">crear una cuenta</a>,
+            de lo contrario inicia session</p>
+        </ion-label>
+      </ion-list-header>
+      <app-login></app-login>
+    </div>
+    <ng-template #Signup>
+      <ion-list-header>
+        <ion-label>
+          <p><a [routerLink]="['/session/login']">inicia session</a></p>
+        </ion-label>
+      </ion-list-header>
+      <app-signup></app-signup>
+    </ng-template>
+  </ion-list>
+</ion-content>

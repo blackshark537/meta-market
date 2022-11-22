@@ -1,0 +1,29 @@
+<ion-header collapse="fade">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>
+      <ion-icon name="search-circle-outline"></ion-icon>
+      Buscar
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionClear)="clear()" (keyup.enter)="search($event.target)"  animated="true"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+
+  <ion-list>
+    <ion-list-header>
+      Productos encontrados {{(products$ | async)?.length}}
+    </ion-list-header>
+    <product-item *ngFor="let item of products$ | async" [product]="item"></product-item>
+    <div class="empty" *ngIf="!(products$ | async)?.length">
+      <ion-label>
+        <ion-icon name="leaf-outline"></ion-icon>
+        No hay productos!
+      </ion-label>
+    </div>
+  </ion-list>
+</ion-content>

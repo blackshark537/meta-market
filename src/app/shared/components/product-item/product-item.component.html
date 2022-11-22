@@ -1,0 +1,33 @@
+<ion-card button (click)="open()">
+  <ion-item [detail]="true" >
+    <ion-thumbnail  slot="start">
+      <img loading="eager"
+      [src]="foto" alt="product-img">
+    </ion-thumbnail>
+  
+    <ion-label >
+      <!-- <div class="offerta" *ngIf="en_oferta" >
+        En offerta
+      </div> -->
+      <small *ngIf="en_oferta">
+        <ion-badge>
+          En offerta
+        </ion-badge>
+      </small>
+      <div style="width: 100px;">
+        <h2>{{nombre | titlecase}}</h2>
+        <h2>Contenido: {{contenido}} {{unidad | uppercase}}</h2>
+      </div>
+      
+      <h2><b>{{precio | currency}}</b></h2>
+
+      <h2 *ngIf="en_oferta" ><del>{{precio_venta | currency}}</del></h2>
+
+      <!-- <ion-note>solo queda 1</ion-note> -->
+    </ion-label>
+    <!-- <ion-label slot="end">
+      <ion-icon name="heart-outline" size="large" color="danger"></ion-icon>
+      <p style="text-align: center;">{{rate}}</p>
+    </ion-label> -->
+  </ion-item>
+</ion-card>

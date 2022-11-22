@@ -1,0 +1,44 @@
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar >
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Editar Dirección</ion-label>
+    </ion-list-header>
+
+    <form [formGroup]="addressForm">
+      <ion-item>
+        <ion-label position="floating">Dirección</ion-label>
+        <ion-input formControlName="direccion"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Piso/Apartamento/Casa</ion-label>
+        <ion-input formControlName="piso"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Indicaciones</ion-label>
+        <ion-input formControlName="indicaciones"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre De La Dirección</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+      <div class="spacer"></div>
+      <ion-item>
+        <ion-label>Marcar Como Dirección Principal</ion-label>
+        <ion-toggle formControlName="principal"></ion-toggle>
+      </ion-item>
+      <div class="spacer"></div>
+      <ion-button [disabled]="addressForm.invalid" (click)="save()" color="primary" fill="outline" expand="full" shape="round">Guardar</ion-button>
+      <ion-button (click)="dismiss()" color="medium" fill="outline" expand="full" shape="round">Cerrar</ion-button>
+    </form>
+  </ion-list>
+</ion-content>
