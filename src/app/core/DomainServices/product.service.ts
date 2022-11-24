@@ -15,7 +15,11 @@ export class ProductService {
         ofType(ProductCmd.enDescuento),
         tap(async ()=>{
             const productQuery = new Parse.Query(Product.extend("Productos"));
-            const productos = await productQuery.equalTo("en_oferta", true).findAll();
+            const productos = await productQuery.equalTo("en_oferta", true).findAll()
+            .catch(async error=>{ 
+                await this.msgCtrl.presentToast(error)
+            });
+            if(!productos) return;
             this.store.dispatch(ProductCmd.establecerDescuento({productos}));
         })
     ), { dispatch: false});
@@ -26,8 +30,13 @@ export class ProductService {
             const load = await this.msgCtrl.loading();
             // const productQuery = new Parse.Query(Product.extend("Productos"));
             // const productos = await productQuery.fullText("nombre", action.nombre).findAll();
-            const productos = await Parse.Cloud.run("buscar", { value: action.nombre }) as Product[];
+            const productos = await Parse.Cloud.run("buscar", { value: action.nombre })
+            .catch(async error=>{ 
+                await this.msgCtrl.presentToast(error)
+            });
             load.dismiss();
+
+            if(!productos) return;
             this.store.dispatch(ProductCmd.establecer({productos}));
             await Parse.Analytics.track("Busquedas", {
                 nombre: action.nombre
@@ -40,8 +49,13 @@ export class ProductService {
         tap(async action=>{
             const load = await this.msgCtrl.loading();
             const productQuery = new Parse.Query(Product.extend("Productos"));
-            const productos = await productQuery.equalTo("objectId", action.id).find();
+            const productos = await productQuery.equalTo("objectId", action.id).find()
+            .catch(async error=>{ 
+                await this.msgCtrl.presentToast(error)
+            });
             load.dismiss();
+
+            if(!productos) return;
             this.store.dispatch(ProductCmd.establecerUno({producto: productos}))
         })
     ), { dispatch: false});
@@ -54,8 +68,13 @@ export class ProductService {
             const categoryQuery = new Parse.Query(Category);
             const categoryObject = await categoryQuery.equalTo("objectId", categoria).find();
             const relation = categoryObject[0]?.relation("productos");
-            const productos = await relation?.query().findAll() as Product[];
+            const productos = await relation?.query().findAll()
+            .catch(async error=>{ 
+                await this.msgCtrl.presentToast(error)
+            });
             load.dismiss();
+            
+            if(!productos) return;
             this.store.dispatch(ProductCmd.establecer({productos}));
         })
     ), { dispatch: false});
