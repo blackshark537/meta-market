@@ -43,7 +43,7 @@ export class AddressItemComponent implements iAddress {
   }
 
   get principal(): boolean{
-    return this.attr.principal;
+    return this.address?.get("principal");
   }
 
   get color(): "primary" | "light" {
@@ -56,11 +56,9 @@ export class AddressItemComponent implements iAddress {
     this.store.dispatch(AddressCmd.borrar({address: this.address}))
   }
 
-  makePrincipal(target: any)
+  makePrincipal(target?: any)
   {
     if(!this.address) return;
-    
-    this.address?.set("principal", target.value);
     this.store.dispatch(AddressCmd.hacerlaPrincipal({ address: this.address }))
   }
 

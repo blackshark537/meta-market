@@ -1,5 +1,5 @@
 
-  <ion-item *ngIf="chequed; else slide" >
+  <ion-item *ngIf="chequed; else slide" (click)="makePrincipal()">
     <ion-icon name="location-outline" slot="start"></ion-icon>
     <ion-label>
       <h1>{{nombre | titlecase}}</h1>

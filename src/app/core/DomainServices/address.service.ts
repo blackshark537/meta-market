@@ -63,7 +63,7 @@ export class AddressService {
         })
     ), { dispatch: false })
 
-    makeItFirst = createEffect(()=> this.actions$.pipe(
+    setMain$ = createEffect(()=> this.actions$.pipe(
         ofType(AddressCmd.hacerlaPrincipal),
         tap( async action=>{
             const address = action.address;

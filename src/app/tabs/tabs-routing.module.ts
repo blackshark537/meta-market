@@ -22,6 +22,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/profile/profile.module').then( m => m.ProfilePageModule)
       },
       {
+        path: 'purchases',
+        loadChildren: () => import('../pages/purchases/purchases.module').then( m => m.PurchasesPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/shop',
         pathMatch: 'full'

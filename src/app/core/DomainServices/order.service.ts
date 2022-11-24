@@ -22,7 +22,7 @@ export class OrserService {
             if(!!resp){ 
                 await this.msgPort.presentToast(resp.msg);
                 this.store.dispatch(CarritoCmd.obtenerCarrito());
-                this.router.navigate(['/']);
+                this.router.navigate(['/tabs/purchases']);
             }
         })
     ), { dispatch: false });

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MessageService } from '../helpers/Message.service';
 import { MessagePort } from './Ports';
-import { effects } from './UseCases';
+import { effects } from './DomainServices';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
