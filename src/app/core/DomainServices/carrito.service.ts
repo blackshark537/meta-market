@@ -6,6 +6,7 @@ import { CarritoCmd } from "../Commands";
 import { Product } from "../Domain/Entities";
 import * as Parse from 'parse';
 import { MessagePort } from '../Ports/Message.port';
+import { Router } from "@angular/router";
 
 @Injectable()
 export class CarritoService {
@@ -30,7 +31,7 @@ export class CarritoService {
             const { productoId, qty } = action;
             const user = Parse.User.current();
             if(!user){
-                this.msgCtrl.presentToast("Por Favor, Inicia Session!");
+                this.router.navigate(['/tabs/profile']);
                 return;
             }
             const load = await this.msgCtrl.loading();
@@ -77,7 +78,7 @@ export class CarritoService {
             if(!conf) return;
             const user = Parse.User.current();
             if(!user){
-                this.msgCtrl.presentToast("Por Favor, Inicia Session!");
+                this.router.navigate(['/tabs/profile']);
                 return;
             }
             const load = await this.msgCtrl.loading();
@@ -98,6 +99,7 @@ export class CarritoService {
     constructor(
         protected actions$: Actions,
         protected store: Store,
+        protected router: Router,
         protected msgCtrl: MessagePort
     ) {}
 }

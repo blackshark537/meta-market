@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://localhost:1337/parse',//'https://dataprod.cloud/parse',//
+  serverUrl: 'https://dataprod.cloud/parse',//'http://localhost:1337/parse',//
   appId: "com.blackshark.market",
   appName: "Meta Market"
 };

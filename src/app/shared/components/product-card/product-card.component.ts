@@ -8,6 +8,8 @@ import { Product } from 'src/app/core/Domain/Entities';
 })
 export class ProductCardComponent implements OnInit, AfterContentInit {
   @Input('product') product?: Product;
+  @Input('qty') qty = 1;
+
   @ViewChild('cardImg', { static: true }) cardImg?: ElementRef;
   protected attr: any;
   protected img = new Image();

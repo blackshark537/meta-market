@@ -11,7 +11,10 @@ import { iOrder } from 'src/app/core/Domain/Interfaces';
   styleUrls: ['./purchases.page.scss'],
 })
 export class PurchasesPage implements OnInit {
-  protected orders$: Observable<iOrder[]>;
+  protected orders: string[] = [];
+  protected orderIndex: {[date: string]: iOrder[]} = {};
+  protected requested = false;
+
   protected colors: {[name: string]: string} = {
     "procesando": "secundary",
     "aceptado": "primary",
@@ -29,11 +32,29 @@ export class PurchasesPage implements OnInit {
   constructor(
     protected store: Store<AppState>
   ) { 
-    this.orders$ = store.select("pedidos");
+    store.select("pedidos").subscribe(orders=>{
+      if(!orders.length && !this.requested){ 
+        this.store.dispatch(OrderCmd.obtenerPedidos());
+        this.requested = true;
+        return;
+      }
+      
+      const fechas = orders.map(order=> this.getId(order.fecha));
+      
+      fechas.forEach(fecha=>{
+        this.orderIndex[fecha] = orders.filter(el=> fecha === this.getId(el.fecha));
+      });
+
+      this.orders = Object.keys(this.orderIndex);
+    });
   }
 
   ngOnInit() {
-    this.store.dispatch(OrderCmd.obtenerPedidos());
+    
+  }
+
+  getId(fecha: Date): string{
+    return `${fecha.getMonth()}-${fecha.getDate()}-${fecha.getFullYear()}`;
   }
 
   handleRefresh(event: any)

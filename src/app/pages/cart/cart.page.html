@@ -31,23 +31,25 @@
     
     <app-empty-msg msg="Carrito Vacio!" [trigger]="(products$ | async)?.length"></app-empty-msg>
 
-    <ion-item>
-      <ion-label slot="end">
-        <h1>Total RD: {{(getTotal(products$) | async) | currency }}</h1>
-      </ion-label>
-    </ion-item>
-    <ion-button [routerLink]="['/order']" [disabled]="!(products$ | async)?.length" color="primary" fill="outline" shape="round" expand="full">
-      <ion-icon slot="start" name="card-outline"></ion-icon>
-      Realizar Pedido
-    </ion-button>
-    <ion-button [routerLink]="['../']" [routerDirection]="'back'" color="medium" fill="outline" shape="round" expand="full">
-      <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
-      ir Atrás
-    </ion-button>
-    <ion-button (click)="emptyCart()" [disabled]="!(products$ | async)?.length" color="danger" fill="outline" shape="round" expand="full">
-      <ion-icon slot="start" name="trash-outline"></ion-icon>
-      Vaciar Carrito
-    </ion-button>
-    
   </ion-list>
 </ion-content>
+<ion-footer>
+  <ion-item>
+    <ion-label slot="end">
+      <h1>Total RD: {{(getTotal(products$) | async) | currency }}</h1>
+    </ion-label>
+  </ion-item>
+  <ion-button [routerLink]="['/order']" [disabled]="!(products$ | async)?.length" color="primary" shape="round" expand="full">
+    <ion-icon slot="start" name="card-outline"></ion-icon>
+    Realizar Pedido
+  </ion-button>
+  <ion-button [routerLink]="['../']" [routerDirection]="'back'" color="medium" fill="outline" shape="round" expand="full">
+    <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+    ir Atrás
+  </ion-button>
+  <ion-button (click)="emptyCart()" [disabled]="!(products$ | async)?.length" color="danger" fill="outline" shape="round" expand="full">
+    <ion-icon slot="start" name="trash-outline"></ion-icon>
+    Vaciar Carrito
+  </ion-button>
+  <div style="height: 1em;"></div>
+</ion-footer>

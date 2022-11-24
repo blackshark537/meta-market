@@ -1,10 +1,18 @@
 .title{
     margin-top: 3em;
-    h1, h2{
+    h1, h2, h3{
         padding-left: 1em;
+    }
+
+    h5{
+        padding-left: 1.2em;
     }
 }
 
 small{
     margin-left: 1em;
+}
+
+ion-card{
+    width: 80%;
 }

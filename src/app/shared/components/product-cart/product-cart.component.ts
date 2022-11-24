@@ -59,6 +59,11 @@ export class ProductCartComponent implements iProduct {
     return this.attr.cantidad;
   }
 
+  set cantidad(value: number | undefined)
+  {
+    this.attr.cantidad = value;
+  }
+
   get unidad(): string
   {
     return this.attr.unidad

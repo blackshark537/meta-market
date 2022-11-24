@@ -28,7 +28,10 @@
 
     <ion-item [routerLink]="['/cart']">
       <ion-icon name="cart-outline" slot="start"></ion-icon>
-      <ion-label>Carrito</ion-label>
+      <ion-label>
+        Carrito
+        <ion-badge color="danger">{{ (carrito$ | async)?.length }}</ion-badge>
+      </ion-label>
     </ion-item>
 
     <!-- <ion-item color="light" [routerLink]="['/giftcard']">

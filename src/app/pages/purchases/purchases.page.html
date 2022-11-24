@@ -20,22 +20,29 @@
       <ion-label>Ordenes De Compras</ion-label>
     </ion-list-header>
 
-    <ion-item *ngFor="let order of orders$ | async ">
-      <ion-thumbnail>
-        <img [src]="order.foto" alt="image">
-      </ion-thumbnail>
-      <ion-label>
-        <h1>{{order.nombre | titlecase}}</h1>
-        <h2>Importe: RD {{order.importe | currency }} </h2>
-        <p>Estado: {{order.estado | uppercase }}</p>
-        <p><small>Fecha: {{order.fecha | date: 'medium'}}</small></p>
-      </ion-label>
-      <ion-spinner *ngIf="order.estado === 'procesando'; else IconBlock " name="lines-sharp-small"></ion-spinner>
-      <ng-template #IconBlock>
-        <ion-icon [color]="colors[order.estado]" [name]="icons[order.estado]" slot="end"></ion-icon>
-      </ng-template>
-    </ion-item>
+    <div *ngFor="let fecha of orders">
+      <ion-list-header>
+        <ion-title>{{fecha}}</ion-title>
+      </ion-list-header>
+      <ion-item *ngFor="let order of orderIndex[fecha]">
+        <ion-thumbnail>
+          <img [src]="order.foto" alt="image">
+        </ion-thumbnail>
+        <ion-label>
+          <h1>{{order.nombre | titlecase}}</h1>
+          <h2>Importe: RD {{order.importe | currency }} </h2>
+          <p>Estado: {{order.estado | uppercase }}</p>
+        </ion-label>
+        <ion-spinner *ngIf="order.estado === 'procesando'; else IconBlock " name="lines-sharp-small"></ion-spinner>
+        <ng-template #IconBlock>
+          <ion-icon [color]="colors[order.estado]" [name]="icons[order.estado]" slot="end"></ion-icon>
+        </ng-template>
+      </ion-item>
+      <ion-item-divider></ion-item-divider>
+    </div>
+    
+    <!--  -->
 
-    <app-empty-msg msg="Has tu primera compra." [trigger]="(orders$ | async)?.length"></app-empty-msg>
+    <app-empty-msg msg="Has tu primera compra." [trigger]="orders.length"></app-empty-msg>
   </ion-list>
 </ion-content>
