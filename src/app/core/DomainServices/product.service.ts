@@ -24,8 +24,9 @@ export class ProductService {
         ofType(ProductCmd.buscar),
         tap(async action=>{
             const load = await this.msgCtrl.loading();
-            const productQuery = new Parse.Query(Product.extend("Productos"));
-            const productos = await productQuery.fullText("nombre", action.nombre).findAll();
+            // const productQuery = new Parse.Query(Product.extend("Productos"));
+            // const productos = await productQuery.fullText("nombre", action.nombre).findAll();
+            const productos = await Parse.Cloud.run("buscar", { value: action.nombre }) as Product[];
             load.dismiss();
             this.store.dispatch(ProductCmd.establecer({productos}));
             await Parse.Analytics.track("Busquedas", {
