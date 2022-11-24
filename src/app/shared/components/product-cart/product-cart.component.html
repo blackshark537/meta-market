@@ -8,18 +8,21 @@
   </ion-thumbnail>
   <ion-label>
     <h2>{{nombre}}</h2>
+    <h2>Precio: RD {{precio | currency}} {{medida}}</h2>
     <ion-row>
-      <ion-col size="6">
-        <ion-label>
-          <h2>Precio:</h2>
-          <h2>Cantidad:</h2>
-        </ion-label>
+      <ion-col size="4"></ion-col>
+      <ion-col size="2.5">
+        <ion-fab-button (click)="decQty()" color="dark" size="small">
+          <ion-icon name="remove"></ion-icon>
+        </ion-fab-button>
       </ion-col>
-      <ion-col size="6">
-        <ion-label style="text-align: right;">
-          <h2>RD {{precio | currency}}</h2>
-          <h2>{{cantidad}} {{medida}} </h2>
-        </ion-label>
+      <ion-col size="3">
+        <h2 class="qty">{{cantidad}}</h2>
+      </ion-col>
+      <ion-col size="2.5">
+        <ion-fab-button (click)="incQty()" color="dark" size="small">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
       </ion-col>
     </ion-row>
   </ion-label>

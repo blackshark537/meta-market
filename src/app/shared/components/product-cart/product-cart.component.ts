@@ -14,7 +14,6 @@ export class ProductCartComponent implements iProduct {
 
   constructor(
     protected store: Store
-
   ) { }
 
   get codigo(): string {
@@ -82,5 +81,15 @@ export class ProductCartComponent implements iProduct {
   remove()
   {
     this.store.dispatch(CarritoCmd.removerDelCarrito({id: this.attr.objectId}))
+  }
+
+  incQty()
+  {
+    this.store.dispatch(CarritoCmd.increment({id: this.attr.objectId}));
+  }
+
+  decQty()
+  {
+    this.store.dispatch(CarritoCmd.decrement({id: this.attr.objectId}));
   }
 }

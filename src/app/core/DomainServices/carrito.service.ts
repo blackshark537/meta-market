@@ -96,6 +96,34 @@ export class CarritoService {
         })
     ), { dispatch: false });
 
+    increment$ = createEffect(()=> this.actions$.pipe(
+        ofType(CarritoCmd.increment),
+        tap(async action=>{
+            const load = await this.msgCtrl.loading();
+            await Parse.Cloud.run("incrementCarrito", { carritoId: action.id})
+            .catch(async error=>{ 
+                await this.msgCtrl.presentToast(error);
+                load.dismiss();
+            });
+            load.dismiss();
+            this.store.dispatch(CarritoCmd.obtenerCarrito());
+        })
+    ), { dispatch: false })
+
+    decrement$ = createEffect(()=> this.actions$.pipe(
+        ofType(CarritoCmd.decrement),
+        tap(async action=>{
+            const load = await this.msgCtrl.loading();
+            await Parse.Cloud.run("decrementCarrito", { carritoId: action.id})
+            .catch(async error=>{ 
+                await this.msgCtrl.presentToast(error);
+                load.dismiss();
+            });
+            load.dismiss();
+            this.store.dispatch(CarritoCmd.obtenerCarrito());
+        })
+    ), { dispatch: false })
+
     constructor(
         protected actions$: Actions,
         protected store: Store,

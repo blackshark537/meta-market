@@ -14,10 +14,15 @@ const establecer = createAction("[Establecer Carrito] poner todos los produtos d
     carrito: Carrito[]
 }>())
 
+const increment = createAction("[Carrito Increment] incrementa la cantidad de un producto", props<{id: string}>())
+const decrement = createAction("[Carrito Decrement] decrementa la cantidad de un producto", props<{id: string}>())
+
 export const CarritoCmd = {
     obtenerCarrito,
     agregarAlCarrito,
     vaciarCarrito,
     removerDelCarrito,
-    establecer
+    establecer,
+    increment,
+    decrement
 };
