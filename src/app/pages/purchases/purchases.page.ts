@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { type } from 'os';
 import { Observable } from 'rxjs';
 import { OrderCmd } from 'src/app/core/Commands';
 import { AppState } from 'src/app/core/Domain/Entities';
@@ -35,6 +34,15 @@ export class PurchasesPage implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(OrderCmd.obtenerPedidos());
+  }
+
+  handleRefresh(event: any)
+  {
+    setTimeout(() => {
+      // Any calls to load data go here
+      this.store.dispatch(OrderCmd.obtenerPedidos());
+      event.target.complete();
+    }, 2000);
   }
 
 }

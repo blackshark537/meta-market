@@ -39,6 +39,9 @@ export class CarritoService {
                 load.dismiss();
                 this.msgCtrl.presentToast(error);
             });
+            
+            if(!resp) return;
+
             await this.msgCtrl.presentToast(resp.msg);
             load.dismiss();
             this.store.dispatch(CarritoCmd.obtenerCarrito());
@@ -83,6 +86,9 @@ export class CarritoService {
                 load.dismiss();
                 this.msgCtrl.presentToast(error);
             });
+
+            if(!resp) return;
+
             await this.msgCtrl.presentToast(resp.msg);
             load.dismiss();
             this.store.dispatch(CarritoCmd.obtenerCarrito());

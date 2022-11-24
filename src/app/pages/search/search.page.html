@@ -19,11 +19,6 @@
       Productos encontrados {{(products$ | async)?.length}}
     </ion-list-header>
     <product-item *ngFor="let item of products$ | async" [product]="item"></product-item>
-    <div class="empty" *ngIf="!(products$ | async)?.length">
-      <ion-label>
-        <ion-icon name="leaf-outline"></ion-icon>
-        No hay productos!
-      </ion-label>
-    </div>
+    <app-empty-msg msg="no hay productos para mostrar" [trigger]="(products$ | async)?.length"></app-empty-msg>
   </ion-list>
 </ion-content>

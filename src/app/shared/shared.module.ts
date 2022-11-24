@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { ProductCartComponent } from './components/product-cart/product-cart.component';
 import { AddressFormComponent } from './components/address-form/address-form.component';
 import { AddressItemComponent } from './components/address-item/address-item.component';
+import { EmptyMsgComponent } from './components/empty-msg/empty-msg.component';
 
 
 
@@ -28,6 +29,7 @@ import { AddressItemComponent } from './components/address-item/address-item.com
     CartCountComponent,
     AddressItemComponent,
     AddressFormComponent,
+    EmptyMsgComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import { AddressItemComponent } from './components/address-item/address-item.com
     SignupComponent,
     AddressItemComponent,
     AddressFormComponent,
+    EmptyMsgComponent
   ]
 })
 export class SharedModule { }

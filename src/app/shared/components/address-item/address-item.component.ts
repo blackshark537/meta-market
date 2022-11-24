@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { AddressCmd } from 'src/app/core/Commands';
@@ -58,8 +58,10 @@ export class AddressItemComponent implements iAddress {
 
   makePrincipal(target: any)
   {
+    if(!this.address) return;
+    
     this.address?.set("principal", target.value);
-    console.log(this.address?.attributes, target.value);
+    this.store.dispatch(AddressCmd.hacerlaPrincipal({ address: this.address }))
   }
 
   async open()

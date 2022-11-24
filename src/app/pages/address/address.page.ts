@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AddressCmd } from 'src/app/core/Commands';
@@ -16,26 +15,12 @@ export class AddressPage implements OnInit {
   protected openModal = false;
   
   constructor(
-    protected store: Store<AppState>,
-    //protected modalCtrl: ModalController
+    protected store: Store<AppState>
   ) { }
 
   ngOnInit() {
     this.addresses$ = this.store.select('direcciones');
     this.store.dispatch(AddressCmd.obtener());
   }
-
-  /* async open()
-  {
-    const modal = await this.modalCtrl.create({
-      component: AddressFormComponent,
-      backdropDismiss: false,
-      animated: true,
-      mode: 'ios'
-    });
-
-    await modal.present();
-    await modal.onDidDismiss();
-  } */
 
 }

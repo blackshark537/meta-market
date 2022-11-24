@@ -24,9 +24,13 @@
         Mi Carrito
       </ion-label>
     </ion-list-header>
+    
     <div *ngFor="let item of products$ | async">
       <app-product-cart  [product]="item"></app-product-cart>
     </div>
+    
+    <app-empty-msg msg="Carrito Vacio!" [trigger]="(products$ | async)?.length"></app-empty-msg>
+
     <ion-item>
       <ion-label slot="end">
         <h1>Total RD: {{(getTotal(products$) | async) | currency }}</h1>

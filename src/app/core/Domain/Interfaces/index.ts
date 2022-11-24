@@ -56,6 +56,8 @@ export interface iOrder {
     fecha: Date;
     user: iUser;
     importe: number;
+    nombre: string;
+    foto: string;
     estado: OrderEstatus;
 }
 

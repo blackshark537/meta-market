@@ -14,12 +14,7 @@
       <app-address-item [address]="address"></app-address-item>
     </div>
 
-    <div class="empty" *ngIf="!(addresses$ | async)?.length">
-      <ion-label>
-        <ion-icon name="leaf-outline"></ion-icon>
-        Agrega Una Dirección
-      </ion-label>
-    </div>
+    <app-empty-msg msg="Agrega Una Dirección." [trigger]="(addresses$ | async)?.length"></app-empty-msg>
 
     <ion-modal #modal trigger="open-modal" [isOpen]="openModal" (willDismiss)="openModal=false">
       <ng-template>
