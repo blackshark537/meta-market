@@ -7,6 +7,7 @@ import { CarritoCmd, SessionCmd } from 'src/app/core/Commands';
 import { AppState, Carrito } from 'src/app/core/Domain/Entities';
 import { User } from 'src/app/core/Domain/Entities/User';
 import { iUser } from 'src/app/core/Domain/Interfaces';
+import { MessageService } from 'src/app/helpers/Message.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,6 +22,7 @@ export class ProfilePage implements OnInit{
   constructor(
     protected readonly router: Router,
     protected readonly store: Store<AppState>,
+    protected readonly msgCtrl: MessageService
   ) { 
     this.carrito$ = store.select("carrito");
     this.user = Parse.User.current() as User;
@@ -35,6 +37,11 @@ export class ProfilePage implements OnInit{
   async logout()
   {
     this.store.dispatch(SessionCmd.Logout());
+  }
+
+  async about()
+  {
+    await this.msgCtrl.presentAlert("Meta Market v1.0")
   }
 
 }

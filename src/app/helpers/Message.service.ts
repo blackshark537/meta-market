@@ -45,7 +45,13 @@ export class MessageService implements MessagePort{
             header: "Info",
             message,
             mode: 'ios',
-            animated: true
+            animated: true,
+            buttons:[
+                {
+                    text: "Ok",
+                    role: "cancel"
+                }
+            ]
         });
 
         await alrt.present();

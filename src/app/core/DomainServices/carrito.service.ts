@@ -38,7 +38,7 @@ export class CarritoService {
             const resp = await Parse.Cloud.run("agregarAlCarrito", { productoId, qty })
             .catch(error=> {
                 load.dismiss();
-                this.msgCtrl.presentToast(error);
+                this.msgCtrl.presentAlert(error);
             });
             
             if(!resp) return;

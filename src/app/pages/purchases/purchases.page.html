@@ -25,7 +25,7 @@
         <ion-title>{{fecha}}</ion-title>
       </ion-list-header>
       <ion-item *ngFor="let order of orderIndex[fecha]">
-        <ion-thumbnail>
+        <ion-thumbnail slot="start">
           <img [src]="order.foto" alt="image">
         </ion-thumbnail>
         <ion-label>
